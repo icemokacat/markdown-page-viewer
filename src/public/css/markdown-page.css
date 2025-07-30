@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'TheJamsil';
+  font-weight: 100;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.eot?#iefix') format('embedded-opentype'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.woff2') format('woff2'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.woff') format('woff'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Thin.ttf') format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TheJamsil';
+  font-weight: 300;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.eot?#iefix') format('embedded-opentype'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.woff2') format('woff2'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.woff') format('woff'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Light.ttf') format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TheJamsil';
+  font-weight: 400;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.eot?#iefix') format('embedded-opentype'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.woff2') format('woff2'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.woff') format('woff'),
+      url('https://cdn.jsdelivr.net/gh/webfontworld/TheJamsil/TheJamsil-Regular.ttf') format("truetype");
+  font-display: swap;
+}
+
+body {
+  background-color: aliceblue;
+  line-height: 1.6;
+}
+
+main {
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+  padding: 48px 0;
+}
+
+aside {
+
+  /* 고정 */
+  position: sticky;
+  top: 50px;
+
+  flex: 1;
+  background: white;
+  padding: 24px;
+  border-radius: 16px 16px 16px 16px;
+  max-width: 400px;
+  margin-left: 20px;
+}
+
+aside h2 {
+  font-size: 1.2rem;
+  color: dimgray;
+}
+
+/* start submenu style */
+
+#welcome{
+  background-color: #9680ff;
+  color: #ffffff;
+  width: fit-content;
+  padding: 4px;
+  display: math;
+  cursor: pointer;
+}
+
+nav > h2{
+  font-family: 'TheJamsil';
+  font-weight: 400;
+}
+.index{
+  font-family: 'TheJamsil';
+  font-size: 100;
+}
+
+.index ul{
+  padding-left: 5px;
+}
+
+.index li.folder::marker {
+  content: "📁 "; /* 마커 내용 */
+  font-size: 1em; /* 마커 크기 */
+}
+.index li.folder{
+  font-weight: 400;
+}
+
+.index li.docs::marker {
+  content: "📄 "; /* 마커 내용 */
+  font-size: 1em; /* 마커 크기 */
+}
+.index li.docs{
+  font-weight: 300;
+}
+
+.docs > a.active {
+  background-color: #98ff01;
+}
+
+.index a {
+  text-decoration: none;
+  color: black;
+  padding: 2px;
+}
+
+.index a:visited , .index a:link {
+  text-decoration: none;
+}
+
+.submenu {
+  display: none;
+}
+
+ul.active {
+  display: block;
+}
+
+/* end submenu style */
+
+article {
+  flex: 3;
+  padding: 32px;
+  border-radius: 16px 0 0 16px;
+}
+
+/* article before 여백 없애기 */
+article::before{
+  display: none !important;
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  padding: 24px;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+      padding: 15px;
+  }
+}
+
+@media (max-width: 40rem) {
+  aside {
+    display: none;
+  }
+
+  article {
+    border-radius: 16px;
+  }
+
+  main {
+    padding: 24px;
+  }
+}

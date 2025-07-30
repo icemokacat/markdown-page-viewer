@@ -1,0 +1,40 @@
+{
+  "name": "markdown-page-viewer",
+  "version": "1.0.0",
+  "description": "마크다운 뷰어 - Bruno",
+  "main": "index.js",
+  "type": "module",
+  "sourceType": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "node src/ts/server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q src/ts/server.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "markdown-page-viewer": "file:",
+    "puppeteer": "^23.3.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.25.2",
+    "@babel/node": "^7.25.0",
+    "@babel/preset-env": "^7.25.3",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "@types/uuid": "^10.0.0",
+    "concurrently": "^9.0.0",
+    "globals": "^15.9.0",
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.4"
+  }
+}

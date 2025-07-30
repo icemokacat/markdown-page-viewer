@@ -1,0 +1,4 @@
+/* PDF 다운로드시 조정하기 위한 style sheet */
+code {
+    white-space: break-spaces !important;
+}

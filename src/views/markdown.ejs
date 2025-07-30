@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/github-markdown-min.css">
+    <link rel="stylesheet" href="/public/css/markdown-page.css">
+    <link rel="stylesheet" href="/public/css/pdf.css">
+
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <aside>
+            <nav>
+                <h2>
+                    <p id="welcome">📺 API Collections</p>
+                </h2>
+                <ul class="index" id="collections">
+                    <%- navHtml %>
+                </ul>
+            </nav>
+            <div class="func">
+                <button type="button" id="pdfDownBtn">💾 PDF Download</button>
+            </div>
+        </aside>
+
+        <article class="markdown-body" id="contents">
+            <%- markdownData %>
+        </article>
+    </main>
+
+    <!-- UI Event -->
+    <script>
+        const collections = document.getElementById('collections');
+        const links = collections.querySelectorAll('a');
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+
+                // sub menu가 있으면 active toggle
+                if (link.nextElementSibling) {
+                    links.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    // 현재 a link 에 active 가 있으면 remove 없으면 add
+
+                    // link.nextElementSibling 의 active 여부 확인
+                    if(link.nextElementSibling.classList.contains('active')){
+                        link.classList.remove('active');
+                    } else {
+                        link.classList.add('active');
+                    }
+                                    
+                    link.nextElementSibling.classList.toggle('active');
+                } // end of if (link.nextElementSibling)
+            }); // end of addEventListener
+        });
+
+        // 페이지 로딩 후 active 된 a link 있으면 부모객체의 ul active
+        // <ul class='submenu'>
+        //     <li>
+        //         <a></a>
+        //     </li>
+        // </ul>
+        // 의 형태이기 때문에 a 링크에 active 가 있으면 부모객체를 찾아 ul 이면 active 를 추가
+        // 이후 부모의 ul을 찾아 active 가 있으면 부모의 부모인 a 에 active 를 추가
+        // nav 까지 가면 멈춤
+        links.forEach(link => {
+            if(link.classList.contains('active')){
+                findAndActiveSubmenu(link);
+            }
+        });
+
+        function findAndActiveSubmenu(target){
+            if(target){
+                let parent = target.parentElement;
+                if(parent && parent.classList && parent.classList.contains('submenu')){
+                    parent.classList.add('active');
+                    parent.parentElement.querySelector('a').classList.add('active');
+                    findAndActiveSubmenu(parent);
+                }else{
+                    // 포함안되 있으면 한단계 더 올라가서 찾음
+                    findAndActiveSubmenu(parent);
+                }
+
+                // nav 엘레멘트이면 종료
+                if(parent && parent.parentElement && parent.parentElement.tagName === 'NAV'){
+                    return;
+                }
+            }else{
+                return;
+            }
+        }
+
+        // article 에 맨먼저 나오는 h 엘레멘트의 text 값을 title로 설정
+        const article = document.getElementById('contents');
+        // h1~6 까지의 엘레멘트를 찾아서 첫번째로 나오는 엘레멘트의 text 값을 title로 설정
+        const helement = article.querySelector('h1, h2, h3, h4, h5, h6');
+        if(helement){
+            const title = helement.textContent;
+            document.title = title;
+        }        
+
+        // #welcome 클릭시 "/" 로 이동
+        const welcome = document.getElementById('welcome');
+        welcome.addEventListener('click', () => {
+            location.href = '/';
+        });
+    </script>
+
+    <script src="/public/js/pdfdown.js"></script>
+
+    <!-- <script src="/public/js/NotoSansKR-VariableFont_wght-normal.js"></script> -->
+</body>
+</html>
